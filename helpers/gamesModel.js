@@ -1,16 +1,19 @@
-const db = require('../data/dbConfig');
+const db = require("../data/dbConfig");
 
 module.exports = {
-    insertGame,
-    getGames
-}
+  insertGame,
+  getGames
+};
 
 async function insertGame(game) {
-    const [id] = await db("games").insert(game, 'id');
+  const [id] = await db("games").insert(game, "id");
 
-    return db("games").select("title", "genre", "releaseYear").where({id}).first();
+  return db("games")
+    .select("title", "genre", "releaseYear")
+    .where({ id })
+    .first();
 }
 
 async function getGames() {
-    return await db("games");
+  return await db("games");
 }
