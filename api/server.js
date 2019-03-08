@@ -9,6 +9,15 @@ server.get("/", async (req, res) => {
     res.status(200).send("Sanity check!");
 })
 
+server.get("/games", async (req, res) => {
+    try {
+        const games = Games.getGames();
+        res.status(200).json(games)
+    } catch(error) {
+
+    }
+})
+
 server.post('/games', async (req, res) => {
     try {
         const { title, genre } = req.body;

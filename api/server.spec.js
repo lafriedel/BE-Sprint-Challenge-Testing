@@ -10,8 +10,10 @@ describe('server.js', () => {
 
     describe('GET /games', () => {
 
-        it.skip('returns 200 OK', async () => {
+        it('returns 200 OK', async () => {
+            const res = await request(server).get("/games");
 
+            expect(res.status).toBe(200);
         });
 
         it.skip('always returns an array', async () => {
