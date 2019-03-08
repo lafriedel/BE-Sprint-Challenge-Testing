@@ -85,4 +85,15 @@ describe("server.js", () => {
       expect(res.status).toBe(201);
     });
   });
+
+  describe('GET /games/:id', () => {
+      it('returns matched game', async () => {
+        await request(server).post('/games').send({ title: "Starfox64", genre: "Space Shooter", releaseYear: 1997 });
+        const res = await request(server).get("/games/1")
+
+        expect(res.body).toEqual({ id: 1, title: "Starfox64", genre: "Space Shooter", releaseYear: 1997 })
+        expect(res.body).not.toEqual({id: 2, title: "Mario 64", genre: "RPG", releaseYear: 1996});
+        expect(res.body).toEqual(expect.objectContaining({id: 1}))
+      })
+  })
 });

@@ -14,7 +14,7 @@ server.get("/games", async (req, res) => {
     const games = await Games.getGames();
     res.status(200).json(games);
   } catch (error) {
-    res.status(500).json({ message: "There was an error retrieving the game" });
+    res.status(500).json({ message: "There was an error retrieving the games" });
   }
 });
 
@@ -31,5 +31,14 @@ server.post("/games", async (req, res) => {
     res.status(500).json({message: "There was an error adding the game"});
   }
 });
+
+server.get("/games/:id", async (req, res) => {
+    try {
+        const game = await Games.getGameById(req.params.id);
+        res.status(200).json(game);
+    } catch (error) {
+        res.status(500).json({message: "There was an error retrieving the game"})
+    }
+})
 
 module.exports = server;
