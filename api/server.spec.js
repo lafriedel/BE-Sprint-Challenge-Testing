@@ -22,8 +22,10 @@ describe('server.js', () => {
             expect(res.body).toEqual(expect.arrayContaining([]));
         });
 
-        it.skip('returns JSON', async () => {
+        it('returns JSON', async () => {
+            const res = await request(server).get("/games");
 
+            expect(res.type).toBe('application/json')
         })
     })
 
