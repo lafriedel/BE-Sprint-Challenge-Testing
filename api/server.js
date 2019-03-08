@@ -11,10 +11,10 @@ server.get("/", async (req, res) => {
 
 server.get("/games", async (req, res) => {
     try {
-        const games = Games.getGames();
+        const games = await Games.getGames();
         res.status(200).json(games)
     } catch(error) {
-
+        res.status(500).json({message: "error"});
     }
 })
 

@@ -16,8 +16,10 @@ describe('server.js', () => {
             expect(res.status).toBe(200);
         });
 
-        it.skip('always returns an array', async () => {
+        it('always returns an array', async () => {
+            const res = await request(server).get("/games");
 
+            expect(res.body).toEqual(expect.arrayContaining([]));
         });
 
         it.skip('returns JSON', async () => {

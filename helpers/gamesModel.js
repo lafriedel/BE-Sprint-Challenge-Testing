@@ -11,6 +11,6 @@ async function insertGame(game) {
     return db("games").select("title", "genre", "releaseYear").where({id}).first();
 }
 
-function getGames() {
-
+async function getGames() {
+    return await db("games");
 }
