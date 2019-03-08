@@ -25,12 +25,16 @@ describe('server.js', () => {
 
     describe('POST /games', () => {
 
-        it.skip('returns object with required fields', async () => {
-        
+        it('returns object with required fields', async () => {
+            const res = await request(server).post('/games').send({title: "Mario 64", genre: "RPG", releaseYear: 1996});
+
+            expect(res.body).toEqual({title: "Mario 64", genre: "RPG", releaseYear: 1996});
         });
 
-        it.skip('returns 422 with incomplete request', async () => {
+        it('returns 422 with incomplete request', async () => {
+            const res = await request(server).post('/games').send({title: "Starfox 64", releaseYear: 1997});
 
+            expect(res.status).toBe(422);
         });
 
         it('returns 201 Created with complete request', async () => {
