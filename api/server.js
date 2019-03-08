@@ -11,10 +11,15 @@ server.get("/", async (req, res) => {
 
 server.post('/games', async (req, res) => {
     try {
-        let game = await Games.insertGame(req.body);
-        res.status(201).json(game);
-    } catch(err) {
-        res.status(500).json(err);
+        const { title, genre } = req.body;
+        if (!title || !genre) {
+            res.status(422).json({error: "Please provide title and genre"})
+        } else {
+            let game = await Games.insertGame(req.body);
+            res.status(201).json(game);
+        }
+    } catch(error) {
+        res.status(500).json(error);
     }
 })
 
