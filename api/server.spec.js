@@ -86,14 +86,42 @@ describe("server.js", () => {
     });
   });
 
-  describe('GET /games/:id', () => {
-      it('returns matched game', async () => {
-        await request(server).post('/games').send({ title: "Starfox64", genre: "Space Shooter", releaseYear: 1997 });
-        const res = await request(server).get("/games/1")
+  describe("GET /games/:id", () => {
+    it("returns matched game", async () => {
+      await request(server)
+        .post("/games")
+        .send({
+          title: "Starfox64",
+          genre: "Space Shooter",
+          releaseYear: 1997
+        });
+      const res = await request(server).get("/games/1");
 
-        expect(res.body).toEqual({ id: 1, title: "Starfox64", genre: "Space Shooter", releaseYear: 1997 })
-        expect(res.body).not.toEqual({id: 2, title: "Mario 64", genre: "RPG", releaseYear: 1996});
-        expect(res.body).toEqual(expect.objectContaining({id: 1}))
-      })
-  })
+      expect(res.body).toEqual({
+        id: 1,
+        title: "Starfox64",
+        genre: "Space Shooter",
+        releaseYear: 1997
+      });
+      expect(res.body).not.toEqual({
+        id: 2,
+        title: "Mario 64",
+        genre: "RPG",
+        releaseYear: 1996
+      });
+      expect(res.body).toEqual(expect.objectContaining({ id: 1 }));
+    });
+
+    it("returns 200 OK", async () => {
+      const res = await request(server).get("/games/:id");
+
+      expect(res.status).toBe(200);
+    });
+
+    it("returns JSON", async () => {
+      const res = await request(server).get("/games/:id");
+
+      expect(res.type).toBe("application/json");
+    });
+  });
 });
