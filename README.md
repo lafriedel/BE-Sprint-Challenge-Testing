@@ -25,8 +25,22 @@ In this challenge use `Test Driven Development` to build a RESTful API using Nod
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 1. In Jest, what are the differences between `describe()` and `it()` globals, and what are good uses for them?
-1. What is the point of `Test Driven Development`? What do you think about this approach?
-1. Mention three types of automated tests.
+
+`describe()` groups together related tests. A string explanation of what is being described (such as a file or a function) is passed into the parentheses as the first argument, and the second is an anonymous function, within which the tests will be contained. It's good to use this to keep things organized not only in your code but in your test suite terminal window as well.
+
+`it()` in an alias for `test()`. It describes the test with a string explanation as the first argument, and the second argument is an anonymous function within which the test will be implemented. Using `it` makes the code slightly more semantic (ex: `it('returns json')` vs `test('returns json')`).
+
+2. What is the point of `Test Driven Development`? What do you think about this approach?
+
+TDD tests code as it is written, which helps prevent the existence of bugs moreso than writing code before tests, or writing code without any tests at all. It won't completely eliminate bugs, but it will make it easier to track down bugs.
+
+It's an approach that makes sense, but it feels very slow-going and clunky to me (at least at the beginning stage of learning). I'm sure if you added up the time spent coding and debugging between a product utilizing TDD and one not, the TDD product required less programming time.
+
+3. Mention three types of automated tests.
+
+Unit tests: It tests a single unit of code, such as one function or one piece of UI
+Integration tests: It tests multiple pieces of code that are supposed to function together, such as a database access code with a test database
+Component testing: It tests appearance and functionality of components in front-end frameworks/libraries, but it does not verify interaction between components
 
 ## Project Set Up
 
